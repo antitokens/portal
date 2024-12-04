@@ -25,9 +25,11 @@
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.83.0",
+    "chart.js": "^4.4.7",
     "dotenv": "^16.4.6",
     "next": "13.5.4",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-toastify": "^9.1.1",
     "tailwindcss": "^3.3.3"

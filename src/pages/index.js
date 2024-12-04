@@ -20,6 +20,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 import VoteOption from "../components/VoteOption";
 import Navbar from "../components/TopNavbar";
 import Footer from "../components/BottomFooter";
+import Dashboard from "../components/Dashboard";
 import { ANTI_TOKEN_MINT, PRO_TOKEN_MINT } from "../utils/solana";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
@@ -129,6 +130,25 @@ const Stars = () => {
 const LandingPage = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "../..";
   const { connected, publicKey } = useWallet();
+  const votersData = {
+    total: 7000,
+    proVoters: 2349,
+    antiVoters: 3290,
+  };
+
+  const tokensData = {
+    total: 999987675,
+    proTokens: 230989765,
+    antiTokens: 259087273,
+  };
+
+  const votesOverTime = {
+    timestamps: ["Dec 6", "Dec 7", "Dec 8", "Dec 9", "Dec 10"],
+    proVotes: [51210286, 10303372, 40281190, 7453850, 121741067],
+    antiVotes: [16543217, 66582982, 145961070, 27472813, 2527191],
+    tokenRangesPro: { "0-100k": 10, "100k-1M": 20, "1-10M": 30 },
+    tokenRangesAnti: { "0-100k": 15, "100k-1M": 50, "1-10M": 10 },
+  };
 
   return (
     <>
@@ -192,12 +212,17 @@ const LandingPage = () => {
               : "Connect your wallet to enable voting"}
           </p>
         </div>
+        <Dashboard
+          votersData={votersData}
+          tokensData={tokensData}
+          votesOverTime={votesOverTime}
+        />
         <div className="backdrop-blur-xl bg-dark-card/50 mt-20 p-12 rounded-2xl border border-gray-800 text-center">
           <h2 className="font-grotesk text-3xl font-bold mb-6 bg-gradient-to-r from-accent-primary from-20% to-accent-secondary to-90% bg-clip-text text-transparent">
-            Ready to Get Started?
+            Ready to dive in?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Join the future of decentralised markets
+            Join the future of prediction markets
           </p>
           <button className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold">
             Buy Tokens
@@ -207,95 +232,6 @@ const LandingPage = () => {
     </>
   );
 };
-
-const Features = () => (
-  <section className="py-20">
-    <h2 className="font-grotesk text-3xl font-bold text-center mb-12 bg-gradient-to-r from-accent-primary from-0% to-accent-secondary to-100% bg-clip-text text-transparent">
-      Features
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {[
-        {
-          title: "Quantum-inspired Design",
-          description:
-            "Unique entangled token pair system based on quantum mechanical principles.",
-        },
-        {
-          title: "Advanced Market Making",
-          description:
-            "Discretised AMM model with paired interaction mechanics.",
-        },
-        {
-          title: "DeSci Integration",
-          description:
-            "Perfect for decentralised science funding and prediction markets.",
-        },
-      ].map((feature, idx) => (
-        <div
-          key={idx}
-          className="p-6 md:p-8 backdrop-blur-xl bg-dark-card/50 rounded-2xl border border-gray-800/50 hover:border-accent-primary/20 transition-colors"
-        >
-          <h3 className="text-gray-300 text-xl font-bold mb-4">
-            {feature.title}
-          </h3>
-          <p className="text-gray-400">{feature.description}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-);
-
-const HowItWorks = () => (
-  <section className="py-20">
-    <h2 className="font-grotesk text-3xl font-bold text-center mb-12 bg-gradient-to-r from-accent-primary from-30% to-accent-secondary to-70% bg-clip-text text-transparent">
-      How It Works
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {[
-        {
-          step: "01",
-          title: "Token Interaction",
-          description:
-            "$ANTI and $PRO tokens interact through the Collider contract.",
-        },
-        {
-          step: "02",
-          title: "Emission Process",
-          description:
-            "Collider emits $BARYON and $PHOTON tokens based on quantum-like operations.",
-        },
-        {
-          step: "03",
-          title: "Market Dynamics",
-          description:
-            "Create prediction markets or fund DeSci projects with emitted tokens.",
-        },
-      ].map((work, idx) => (
-        <div
-          key={idx}
-          className="backdrop-blur-xl bg-dark-card/50 p-6 md:p-8 rounded-2xl border border-gray-800/50 hover:border-accent-primary/20 transition-colors"
-        >
-          <div className="step-number text-6xl font-bold text-accent-primary/50 mb-4">
-            {work.step}
-          </div>
-          <h3 className="text-gray-300 text-xl font-bold mb-4">{work.title}</h3>
-          <p className="text-gray-400">{work.description}</p>
-        </div>
-      ))}
-    </div>
-  </section>
-);
-
-const Roadmap = () => (
-  <section className="py-20">
-    <h2 className="font-grotesk text-3xl font-bold text-center mb-12 bg-gradient-to-r from-accent-primary from-30% to-accent-secondary to-70% bg-clip-text text-transparent">
-      Roadmap
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8">
-      {/* Add your roadmap items here */}
-    </div>
-  </section>
-);
 
 const FAQ = () => (
   <section className="py-20">
