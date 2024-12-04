@@ -18,11 +18,13 @@ import {
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 import VoteOption from "../components/VoteOption";
+import Navbar from "../components/TopNavbar";
+import Footer from "../components/BottomFooter";
 import { ANTI_TOKEN_MINT, PRO_TOKEN_MINT } from "../utils/solana";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 const Home = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "../..";
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://localhost:3000";
 
   return (
     <>
@@ -85,14 +87,11 @@ const Home = () => {
           href={`${BASE_URL}/assets/favicon/site.webmanifest`}
         />
       </Head>
-      <Script>
-        <script src="../main.js" type="module" defer></script>
-      </Script>
       <div className="bg-dark text-gray-100 min-h-screen relative overflow-x-hidden font-grotesk">
         <Stars />
+        <Navbar />
         <LandingPage />
-        <Features />
-        <VotingSection />
+        <Footer />
       </div>
     </>
   );
@@ -104,19 +103,22 @@ function seededRandom(seed) {
 }
 
 const Stars = () => {
-  const seed = 42; // Use a fixed seed value
+  const seed = 42; // Fixed seed value
   return (
     <div className="fixed inset-0 pointer-events-none">
       {Array.from({ length: 16 }).map((_, idx) => {
         const randomTop = seededRandom(seed + idx) * 100;
         const randomLeft = seededRandom(seed * idx) * 100;
+        const floatDuration = 8 + (idx % 6); // 8s to 14s
         return (
           <div
             key={idx}
-            className={`star ${
-              idx % 2 === 0 ? "star-red" : "star-green"
-            } animate-[float_${8 + (idx % 6)}s_ease-in-out_infinite]`}
-            style={{ top: `${randomTop}%`, left: `${randomLeft}%` }}
+            className={`star ${idx % 2 === 0 ? "star-red" : "star-green"}`}
+            style={{
+              top: `${randomTop}%`,
+              left: `${randomLeft}%`,
+              animation: `float ${floatDuration}s ease-in-out infinite`,
+            }}
           ></div>
         );
       })}
@@ -126,23 +128,27 @@ const Stars = () => {
 
 const LandingPage = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "../..";
+  const { connected, publicKey } = useWallet();
 
   return (
     <>
-      <section className="min-h-screen pt-24 md:pt-0 flex items-center relative">
-        <div className="grid grid-cols-1 lg:grid-cols-[70%,30%] items-center gap-12 max-w-7xl mx-auto px-4">
+      <section className="min-h-screen pt-16 md:pt-20 flex flex-col items-center relative mt-10 mb-10">
+        {/* Hero Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-[70%,30%] items-center gap-8 max-w-7xl mx-auto px-4">
+          {/* Hero Text */}
           <div>
-            <h1 className="tracking-tight text-4xl md:text-5xl lg:text-6xl mb-12 text-gray-300/90 font-semibold font-outfit">
-              Quantum-inspired Token Pair for DeSci & Prediction Markets
-            </h1>
-            <p className="font-open font-medium text-xl md:text-[1.35rem] text-gray-300 mb-12 md:mb-24">
-              Experience the future of entangled token pair market making with{" "}
+            <h1 className="tracking-tight text-4xl md:text-5xl lg:text-6xl mb-4 text-gray-300/90 font-semibold font-outfit">
+              Vote with{" "}
               <span className="text-accent-primary font-semibold">$ANTI</span>{" "}
               and{" "}
               <span className="text-accent-secondary font-semibold">$PRO</span>{" "}
-              tokens.
+            </h1>
+            <p className="font-open font-medium text-xl md:text-[1.35rem] text-gray-300 mb-6">
+              Experience the future of prediction markets with Antitoken
             </p>
           </div>
+
+          {/* Hero Image */}
           <div className="flex justify-center relative">
             <div className="absolute w-72 h-72 rounded-full bg-gradient-to-r from-accent-primary/20 to-accent-secondary/20 blur-[50px]"></div>
             <img
@@ -151,6 +157,51 @@ const LandingPage = () => {
               className="w-72 h-72 rounded-full object-cover border-4 border-gray-800/50 relative z-10 transition-transform duration-200 ease-out"
             />
           </div>
+        </div>
+
+        {/* Voting Section */}
+        <div className="text-center mt-10 w-full px-4">
+          <h3 className="font-grotesk text-2xl font-medium text-gray-400 mb-6">
+            Should Dev launch a token on Base?
+          </h3>
+
+          {/* Voting Options */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
+            <VoteOption
+              wallet={publicKey}
+              option="YES with $PRO"
+              mint={ANTI_TOKEN_MINT}
+              disabled={!connected}
+            />
+            <VoteOption
+              wallet={publicKey}
+              option="NO with $ANTI"
+              mint={PRO_TOKEN_MINT}
+              disabled={!connected}
+            />
+          </div>
+
+          {/* Connection Status */}
+          <p
+            className={`mt-4 text-sm ${
+              connected ? "text-gray-300" : "text-red-500 animate-pulse"
+            }`}
+          >
+            {connected
+              ? "Choose your option"
+              : "Connect your wallet to enable voting"}
+          </p>
+        </div>
+        <div className="backdrop-blur-xl bg-dark-card/50 mt-20 p-12 rounded-2xl border border-gray-800 text-center">
+          <h2 className="font-grotesk text-3xl font-bold mb-6 bg-gradient-to-r from-accent-primary from-20% to-accent-secondary to-90% bg-clip-text text-transparent">
+            Ready to Get Started?
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Join the future of decentralised markets
+          </p>
+          <button className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold">
+            Buy Tokens
+          </button>
         </div>
       </section>
     </>
@@ -256,44 +307,6 @@ const FAQ = () => (
     </div>
   </section>
 );
-
-const CallToAction = () => (
-  <section className="py-20">
-    <div className="backdrop-blur-xl bg-dark-card/50 p-12 rounded-2xl border border-gray-800 text-center">
-      <h2 className="font-grotesk text-3xl font-bold mb-6 bg-gradient-to-r from-accent-primary from-20% to-accent-secondary to-90% bg-clip-text text-transparent">
-        Ready to Get Started?
-      </h2>
-      <p className="text-xl text-gray-300 mb-8">
-        Join the future of decentralised markets.
-      </p>
-      <button className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold">
-        Buy Tokens
-      </button>
-    </div>
-  </section>
-);
-
-const VotingSection = () => {
-  const { connected, publicKey } = useWallet();
-
-  return (
-    <section className="py-20">
-      <h2 className="font-grotesk text-3xl font-bold text-center mb-8">
-        Vote with Your Solana Wallet
-      </h2>
-      <div className="text-center">
-        <WalletMultiButton className="wallet-button" />
-        {connected && (
-          <div className="mt-6 space-y-4">
-            <p>Connected Wallet: {publicKey.toString()}</p>
-            <VoteOption wallet={publicKey} option="A" mint={ANTI_TOKEN_MINT} />
-            <VoteOption wallet={publicKey} option="B" mint={PRO_TOKEN_MINT} />
-          </div>
-        )}
-      </div>
-    </section>
-  );
-};
 
 const App = () => {
   const endpoint = clusterApiUrl("mainnet-beta");
