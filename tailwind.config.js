@@ -3,9 +3,9 @@ import typography from "@tailwindcss/typography";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./src/**/*.{html,js}",
-    "./pages/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
+    "./src/**/*.{html,js,jsx,ts,tsx}",
+    "./src/pages/**/*.{html,js,jsx,ts,tsx}",
+    "./src/components/**/*.{html,js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
