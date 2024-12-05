@@ -148,8 +148,8 @@ const LandingPage = () => {
     timestamps: ["Dec 6", "Dec 7", "Dec 8", "Dec 9", "Dec 10"],
     proVotes: [51210286, 10303372, 40281190, 7453850, 121741067],
     antiVotes: [16543217, 66582982, 145961070, 27472813, 2527191],
-    tokenRangesPro: { "0-100k": 10, "100k-1M": 20, "1-10M": 30 },
-    tokenRangesAnti: { "0-100k": 15, "100k-1M": 50, "1-10M": 10 },
+    tokenRangesPro: { "0-100k": 34, "100k-1M": 87, "1-10M": 47 },
+    tokenRangesAnti: { "0-100k": 19, "100k-1M": 59, "1-10M": 42 },
   };
 
   return (

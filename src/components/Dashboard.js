@@ -197,7 +197,7 @@ const Dashboard = ({ votersData, tokensData, votesOverTime }) => {
     const rangeTokens = Array.from(
       { length: 100 },
       (_, i) =>
-        tokensMean - 10000 * tokensStdDev + (i / 99) * 20000 * tokensStdDev
+        tokensMean - 20000 * tokensStdDev + (i / 99) * 40000 * tokensStdDev
     );
     const tokensDistData = calculateNormalDistribution(
       rangeTokens,
