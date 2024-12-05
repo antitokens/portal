@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import {
@@ -21,6 +21,7 @@ import VoteOption from "../components/VoteOption";
 import Navbar from "../components/TopNavbar";
 import Footer from "../components/BottomFooter";
 import Dashboard from "../components/Dashboard";
+import BuyTokenModal from "../components/BuyTokenModal";
 import { ANTI_TOKEN_MINT, PRO_TOKEN_MINT } from "../utils/solana";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
@@ -130,6 +131,7 @@ const Stars = () => {
 const LandingPage = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "../..";
   const { connected, publicKey } = useWallet();
+  const [showBuyTokensModal, setShowBuyTokensModal] = useState(false);
   const votersData = {
     total: 7000,
     proVoters: 2349,
@@ -154,6 +156,14 @@ const LandingPage = () => {
     <>
       <section className="min-h-screen pt-16 md:pt-20 flex flex-col items-center relative mt-10 mb-10">
         {/* Hero Section */}
+        <div className="max-w-7xl w-full mb-8 bg-blue-100 border border-blue-400 text-blue-800 p-4 text-center">
+          <div className="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-800 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z" />
+            </svg>
+            <p>The voting program is built off-chain for demonstration purposes. No funds will be deducted from your wallet.</p>
+          </div>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-[70%,30%] items-center gap-8 max-w-7xl mx-auto px-4">
           {/* Hero Text */}
           <div>
@@ -224,11 +234,12 @@ const LandingPage = () => {
           <p className="text-xl text-gray-300 mb-8">
             Join the future of prediction markets
           </p>
-          <button className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold">
+          <button className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold" onClick={() => setShowBuyTokensModal(true)}>
             Buy Tokens
           </button>
         </div>
       </section>
+      <BuyTokenModal isVisible={showBuyTokensModal} setIsVisible={setShowBuyTokensModal} />
     </>
   );
 };

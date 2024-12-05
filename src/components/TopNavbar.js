@@ -52,7 +52,7 @@ const Navbar = () => {
             <Link href="/" passHref legacyBehavior>
               <a className="flex items-center text-3xl md:text-xl lg:text-3xl font-semibold font-ocr bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
                 Antitoken
-                <span className="text-xs lg:text-sm ml-2 text-white bg-orange-500 py-1 px-2 rounded">ALPHA</span>
+                <span className="text-xs md:text-sm ml-2 text-white bg-accent-primary py-1 px-2 rounded">ALPHA</span>
               </a>
             </Link>
           </div>
@@ -63,9 +63,9 @@ const Navbar = () => {
           {/* Mobile Logo */}
           <div className="md:hidden flex justify-center">
             <Link href="/" passHref legacyBehavior>
-              <a className="flex items-center tracking-tighter font-semibold font-ocr bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
+              <a className="flex items-center tracking-tighter text-2xl md:text-xl font-semibold font-ocr bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
                 Antitoken
-                <span className="text-[10px] ml-1 text-white bg-orange-500 px-1 py-0.5 rounded">ALPHA</span>
+                <span className="text-xs ml-2 text-white bg-accent-primary px-2 py-0.5 rounded">ALPHA</span>
               </a>
             </Link>
           </div>
