@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
 const Navbar = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCommunityDropdownOpen, setIsCommunityDropdownOpen] = useState(false);
   const [isMobileCommunityOpen, setIsMobileCommunityOpen] = useState(false);
@@ -23,6 +24,12 @@ const Navbar = () => {
   const toggleMobileCommunity = () => {
     setIsMobileCommunityOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    // Check if the component is mounted to prevent hydration errors
+    // when the wallet button is rendered on the server
+    setIsMounted(true);
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 backdrop-blur-xl bg-dark-card/50 border-b border-gray-800/50 z-50">
@@ -88,14 +95,6 @@ const Navbar = () => {
               onClick={toggleMobileMenu}
             >
               Whitepaper
-            </a>
-            <a
-              href="https://forum.antitoken.pro"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-300 hover:text-accent-primary transition-colors"
-            >
-              Forum
             </a>
             <div className="relative" onMouseEnter={openCommunityDropdown} onMouseLeave={closeCommunityDropdown}>
               <button className="text-gray-300 hover:text-accent-primary transition-colors flex items-center">
@@ -169,7 +168,7 @@ const Navbar = () => {
         <div className="justify-self-end relative">
           {/* (Desktop) */}
           <div className="hidden md:block">
-            <WalletMultiButton className="wallet-button" />
+            {isMounted && <WalletMultiButton className="wallet-button" />}
           </div>
         </div>
       </div>
@@ -220,7 +219,7 @@ const Navbar = () => {
             )}
             </div>
             <hr className="border-gray-700/50" />
-            <WalletMultiButton className="wallet-button" />
+            {isMounted && <WalletMultiButton className="wallet-button" />}
           </div>
         </div>
       )}
