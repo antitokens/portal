@@ -4,7 +4,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 const endpoint = process.env.NEXT_PUBLIC_SOL_RPC;
 const connection = new Connection(endpoint);
 
-// Token Programs [.env]
+// Token Programs
 export const ANTI_TOKEN_MINT = new PublicKey(process.env.NEXT_PUBLIC_ANTI_TOKEN_MINT);
 export const PRO_TOKEN_MINT = new PublicKey(process.env.NEXT_PUBLIC_PRO_TOKEN_MINT);
 

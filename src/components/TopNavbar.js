@@ -169,9 +169,10 @@ const Navbar = () => {
         <div className="justify-self-end relative">
           {/* (Desktop) */}
           <div className="hidden md:block">
-            {isMounted && <div className="flex flex-col items-end">
-              <WalletMultiButton className="wallet-button" />
+            {isMounted && <div className="flex flex-row items-center">
               <TokenBalance />
+              &nbsp;&nbsp;
+              <WalletMultiButton className="wallet-button" />
             </div>}
           </div>
         </div>
@@ -223,8 +224,7 @@ const Navbar = () => {
             )}
             </div>
             <hr className="border-gray-700/50" />
-
-            {isMounted && <div className="flex flex-col items-end">
+            {isMounted && <div className="flex flex-col">            
               <WalletMultiButton className="wallet-button" />
               <TokenBalance />
             </div>}
