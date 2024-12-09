@@ -16,7 +16,6 @@ import {
   TorusWalletAdapter,
   LedgerWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import { clusterApiUrl } from "@solana/web3.js";
 import VoteOption from "../components/VoteOption";
 import Navbar from "../components/TopNavbar";
 import Footer from "../components/BottomFooter";
@@ -258,7 +257,7 @@ const FAQ = () => (
 
 const App = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const endpoint = BASE_URL === "http://localhost:3000" && process.env.NEXT_PUBLIC_SOL_RPC ? process.env.NEXT_PUBLIC_SOL_RPC :  process.env.NEXT_PUBLIC_SOL_RPC;
+  const endpoint = process.env.NEXT_PUBLIC_SOL_RPC;
 
   // Configure supported wallets
   const wallets = useMemo(
