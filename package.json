@@ -1,7 +1,7 @@
 {
-  "name": "collider-beta",
+  "name": "antitokens-app",
   "version": "0.0.0",
-  "description": "A frontend application for voting using Solana tokens and storing results in Cloudflare Workers KV.",
+  "description": "A frontend dashboard for Antitoken.",
   "main": "src/pages/index.js",
   "scripts": {
     "dev": "next dev",

@@ -60,7 +60,6 @@ const Navbar = () => {
             <Link href="/" passHref legacyBehavior>
               <a className="flex items-center text-3xl md:text-xl lg:text-3xl font-semibold font-ocr bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
                 Antitoken
-                <span className="text-xs md:text-sm ml-2 text-white bg-accent-primary py-1 px-2 rounded">ALPHA</span>
               </a>
             </Link>
           </div>
@@ -73,7 +72,6 @@ const Navbar = () => {
             <Link href="/" passHref legacyBehavior>
               <a className="flex items-center tracking-tighter text-2xl md:text-xl font-semibold font-ocr bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">
                 Antitoken
-                <span className="text-xs ml-2 text-white bg-accent-primary px-2 py-0.5 rounded">ALPHA</span>
               </a>
             </Link>
           </div>

@@ -16,7 +16,6 @@ import {
   TorusWalletAdapter,
   LedgerWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import VoteOption from "../components/VoteOption";
 import Navbar from "../components/TopNavbar";
 import Footer from "../components/BottomFooter";
 import Dashboard from "../components/Dashboard";
@@ -29,7 +28,7 @@ const Home = ({BASE_URL}) => {
   return (
     <>
       <Head>
-        <title>Antitoken - Quantum-inspired Token Pair</title>
+        <title>Antitoken | Portal</title>
         <meta
           name="description"
           content="Experience the future of entangled token pair market making with $ANTI and $PRO tokens."
@@ -38,11 +37,11 @@ const Home = ({BASE_URL}) => {
         {/* Open Graph Meta Tags */}
         <meta
           property="og:title"
-          content="Antitoken - Quantum-inspired Token Pair"
+          content="Antitoken Portal"
         />
         <meta
           property="og:description"
-          content="Experience the future of entangled token pair market making with $ANTI and $PRO tokens."
+          content="Experience the future of prediction markets with $ANTI and $PRO tokens."
         />
         <meta
           property="og:image"
@@ -59,7 +58,7 @@ const Home = ({BASE_URL}) => {
         />
         <meta
           name="twitter:description"
-          content="Experience the future of entangled token pair market making with $ANTI and $PRO tokens."
+          content="Experience the future of prediction markets with $ANTI and $PRO tokens."
         />
         <meta
           name="twitter:image"
@@ -153,7 +152,7 @@ const LandingPage = ({BASE_URL}) => {
   return (
     <>
       <section className="min-h-screen pt-16 md:pt-20 flex flex-col items-center relative mt-10 mb-10">
-        {/* Hero Section */}
+        {/* Hero Section
         <div className="max-w-7xl w-full mb-8 bg-gray-800 border border-gray-700 text-gray-300 p-4 text-center">
           <div className="flex items-center gap-2">
             <div>
@@ -163,18 +162,19 @@ const LandingPage = ({BASE_URL}) => {
             </div>
             <p className="text-left">The voting program is built off-chain for demonstration purposes. No funds will be deducted from your wallet.</p>
           </div>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[70%,30%] items-center gap-8 max-w-7xl mx-auto px-4">
+        </div>*/}
+        <div className="grid grid-cols-1 lg:grid-cols-[60%,40%] items-center gap-8 max-w-7xl mx-auto px-4">
           {/* Hero Text */}
           <div>
             <h1 className="tracking-tight text-4xl md:text-5xl lg:text-6xl mb-4 text-gray-300/90 font-semibold font-outfit">
-              Vote with{" "}
+              Antitoken Portal
+            </h1>
+            <p className="font-open font-medium text-xl md:text-[1.85rem] text-gray-300 mb-6">
+              Your {" "}
               <span className="text-accent-primary font-semibold">$ANTI</span>{" "}
               and{" "}
               <span className="text-accent-secondary font-semibold">$PRO</span>{" "}
-            </h1>
-            <p className="font-open font-medium text-xl md:text-[1.35rem] text-gray-300 mb-6">
-              Experience the future of prediction markets with Antitoken
+              Portfolio
             </p>
           </div>
 
@@ -188,40 +188,7 @@ const LandingPage = ({BASE_URL}) => {
             />
           </div>
         </div>
-
-        {/* Voting Section */}
-        <div className="text-center mt-10 w-full px-4">
-          <h3 className="font-grotesk text-2xl font-medium text-gray-400 mb-6">
-            Should Dev launch a token on Base?
-          </h3>
-
-          {/* Voting Options */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-md mx-auto">
-            <VoteOption
-              wallet={publicKey}
-              option="YES with $PRO"
-              mint={ANTI_TOKEN_MINT}
-              disabled={!connected}
-            />
-            <VoteOption
-              wallet={publicKey}
-              option="NO with $ANTI"
-              mint={PRO_TOKEN_MINT}
-              disabled={!connected}
-            />
-          </div>
-
-          {/* Connection Status */}
-          <p
-            className={`mt-4 text-sm ${
-              connected ? "text-gray-300" : "text-red-500 animate-pulse"
-            }`}
-          >
-            {connected
-              ? "Choose your option"
-              : "Connect your wallet to enable voting"}
-          </p>
-        </div>
+        
         <Dashboard
           votersData={votersData}
           tokensData={tokensData}
