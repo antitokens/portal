@@ -258,7 +258,7 @@ const FAQ = () => (
 
 const App = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const endpoint = BASE_URL === "http://localhost:3000" && process.env.NEXT_PUBLIC_SOL_RPC ? process.env.NEXT_PUBLIC_SOL_RPC :  clusterApiUrl("mainnet-beta");
+  const endpoint = BASE_URL === "http://localhost:3000" && process.env.NEXT_PUBLIC_SOL_RPC ? process.env.NEXT_PUBLIC_SOL_RPC :  process.env.NEXT_PUBLIC_SOL_RPC;
 
   // Configure supported wallets
   const wallets = useMemo(
