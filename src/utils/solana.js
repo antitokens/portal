@@ -1,6 +1,8 @@
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 
-const connection = new Connection(clusterApiUrl("mainnet-beta"));
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+const endpoint = BASE_URL === "http://localhost:3000" && process.env.NEXT_PUBLIC_SOL_RPC ? process.env.NEXT_PUBLIC_SOL_RPC :  clusterApiUrl("mainnet-beta");
+const connection = new Connection(endpoint);
 
 // Token Programs
 export const ANTI_TOKEN_MINT = new PublicKey(process.env.NEXT_PUBLIC_ANTI_TOKEN_MINT);

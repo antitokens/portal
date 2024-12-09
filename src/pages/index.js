@@ -25,9 +25,8 @@ import BuyTokenModal from "../components/BuyTokenModal";
 import { ANTI_TOKEN_MINT, PRO_TOKEN_MINT } from "../utils/solana";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
-const Home = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://localhost:3000";
-
+const Home = ({BASE_URL}) => {
+  
   return (
     <>
       <Head>
@@ -92,7 +91,7 @@ const Home = () => {
       <div className="bg-dark text-gray-100 min-h-screen relative overflow-x-hidden font-grotesk">
         <Stars />
         <Navbar />
-        <LandingPage />
+        <LandingPage BASE_URL={BASE_URL} />
         <Footer />
       </div>
     </>
@@ -128,8 +127,8 @@ const Stars = () => {
   );
 };
 
-const LandingPage = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "../..";
+const LandingPage = ({BASE_URL}) => {
+ 
   const { connected, publicKey } = useWallet();
   const [showBuyTokensModal, setShowBuyTokensModal] = useState(false);
   const votersData = {
@@ -258,7 +257,8 @@ const FAQ = () => (
 );
 
 const App = () => {
-  const endpoint = clusterApiUrl("mainnet-beta");
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const endpoint = BASE_URL === "http://localhost:3000" && process.env.NEXT_PUBLIC_SOL_RPC ? process.env.NEXT_PUBLIC_SOL_RPC :  clusterApiUrl("mainnet-beta");
 
   // Configure supported wallets
   const wallets = useMemo(
@@ -274,7 +274,7 @@ const App = () => {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
-          <Home />
+          <Home BASE_URL={BASE_URL} />
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
