@@ -134,6 +134,7 @@ const Dashboard = () => {
           );
         };
 
+        const randomCount = 8;
         const randomNames = [
           "Raydium",
           "Meteora",
@@ -144,8 +145,7 @@ const Dashboard = () => {
           "Abstract",
           "Solend",
         ];
-        const randomCount = 8;
-
+        const randomColors = generateRandomColors(randomCount);
         const priceHistoryAnti = await getTokenPriceHistory(
           ANTI_TOKEN_MINT,
           10
@@ -227,7 +227,7 @@ const Dashboard = () => {
             {
               label: "$ANTI",
               data: lpBalancesAnti,
-              backgroundColor: generateRandomColors(randomCount),
+              backgroundColor: randomColors,
             },
           ],
           options: chartOptionsPie,
@@ -239,7 +239,7 @@ const Dashboard = () => {
             {
               label: "$PRO",
               data: lpBalancesPro,
-              backgroundColor: generateRandomColors(randomCount),
+              backgroundColor: randomColors,
             },
           ],
           options: chartOptionsPie,
