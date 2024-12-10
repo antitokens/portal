@@ -118,6 +118,7 @@ const Dashboard = () => {
         const holdersAnti = await getTotalHolders(ANTI_TOKEN_MINT, timestamps);
         const holdersPro = await getTotalHolders(PRO_TOKEN_MINT, timestamps);
 
+        // -- Mock --
         const generateRandomArrayWithSum = (length, total) => {
           const arr = Array.from({ length }, () => Math.random()); // Generate random values
           const sum = arr.reduce((acc, val) => acc + val, 0); // Calculate the sum of random values
@@ -172,21 +173,22 @@ const Dashboard = () => {
               Math.round(Math.random() * 10) /
                 priceHistoryPro.map((entry) => entry.price)[i]
           );
+        // ------
 
         setLineChartDataHolders({
           labels: timestamps.map((ts) => new Date(ts).toLocaleDateString()),
           datasets: [
             {
-              label: "$ANTI",
+              label: "ANTI",
               data: holdersAnti.map((entry) => entry.totalHolders),
               borderColor: "#D13800",
               backgroundColor: "#D13800",
               fill: false,
             },
             {
-              label: "$PRO",
+              label: "PRO",
               data: holdersPro.map(
-                (entry) => entry.totalHolders - Math.round(Math.random() * 100)
+                (entry) => entry.totalHolders - Math.round(Math.random() * 100) // -- Mock --
               ),
               borderColor: "#00CC8E",
               backgroundColor: "#00CC8E",
@@ -202,16 +204,16 @@ const Dashboard = () => {
             .map((ts) => new Date(ts).toLocaleDateString()),
           datasets: [
             {
-              label: "$ANTI",
+              label: "ANTI",
               data: priceHistoryAnti.map(
-                (entry) => entry.price + Math.round(Math.random() * 10)
+                (entry) => entry.price + Math.round(Math.random() * 10) // -- Mock --
               ),
               borderColor: "#D13800",
               backgroundColor: "#D13800",
               fill: false,
             },
             {
-              label: "$PRO",
+              label: "PRO",
               data: priceHistoryPro.map((entry) => entry.price),
               borderColor: "#00CC8E",
               backgroundColor: "#00CC8E",
@@ -222,10 +224,10 @@ const Dashboard = () => {
         });
 
         setPieChartDataLPBalancesAnti({
-          labels: Array.from({ length: randomCount }, (_, i) => randomNames[i]),
+          labels: Array.from({ length: randomCount }, (_, i) => randomNames[i]), // -- Mock --
           datasets: [
             {
-              label: "$ANTI",
+              label: "ANTI",
               data: lpBalancesAnti,
               backgroundColor: randomColors,
             },
@@ -234,10 +236,10 @@ const Dashboard = () => {
         });
 
         setPieChartDataLPBalancesPro({
-          labels: Array.from({ length: randomCount }, (_, i) => randomNames[i]),
+          labels: Array.from({ length: randomCount }, (_, i) => randomNames[i]), // -- Mock --
           datasets: [
             {
-              label: "$PRO",
+              label: "PRO",
               data: lpBalancesPro,
               backgroundColor: randomColors,
             },
@@ -260,11 +262,11 @@ const Dashboard = () => {
         });
 
         setHolderDistribution({
-          labels: ["$ANTI", "$PRO"],
+          labels: ["ANTI", "PRO"],
           datasets: [
             {
               label: "Holder Distribution",
-              data: randomHolderDistribution,
+              data: randomHolderDistribution, // -- Mock --
               backgroundColor: ["#D13800", "#00CC8E"],
             },
           ],
