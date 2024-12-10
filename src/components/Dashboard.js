@@ -301,13 +301,11 @@ const Dashboard = () => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">
-            <span className="text-accent-orange">$ANTI</span> LP Balances
-          </h3>
-          {pieChartDataLPBalancesAnti && (
-            <Pie
-              data={pieChartDataLPBalancesAnti}
-              options={pieChartDataLPBalancesAnti.options}
+          <h3 className="text-center font-semibold mb-4">Price Ratio</h3>
+          {lineChartDataRatio && (
+            <Line
+              data={lineChartDataRatio}
+              options={lineChartDataRatio.options}
             />
           )}
         </div>
@@ -323,11 +321,13 @@ const Dashboard = () => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">Price Ratio</h3>
-          {lineChartDataRatio && (
-            <Line
-              data={lineChartDataRatio}
-              options={lineChartDataRatio.options}
+          <h3 className="text-center font-semibold mb-4">
+            <span className="text-accent-orange">$ANTI</span> LP Balances
+          </h3>
+          {pieChartDataLPBalancesAnti && (
+            <Pie
+              data={pieChartDataLPBalancesAnti}
+              options={pieChartDataLPBalancesAnti.options}
             />
           )}
         </div>
