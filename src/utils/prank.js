@@ -17,22 +17,22 @@ const placeholderHoldersData = [
   { timestamp: Date.now(), totalHolders: 1000, percentageChange: 0 },
   {
     timestamp: Date.now() - 24 * 60 * 60 * 1000,
-    totalHolders: 950 + Math.round(Math.random() * 100),
+    totalHolders: 950 + Math.round(Math.random() * 1000),
     percentageChange: -5 + Math.round(Math.random() * 10),
   },
   {
     timestamp: Date.now() - 7 * 24 * 60 * 60 * 1000,
-    totalHolders: 900 + Math.round(Math.random() * 100),
+    totalHolders: 900 + Math.round(Math.random() * 1000),
     percentageChange: -10 + Math.round(Math.random() * 10),
   },
   {
     timestamp: Date.now() - 30 * 24 * 60 * 60 * 1000,
-    totalHolders: 800 + Math.round(Math.random() * 100),
+    totalHolders: 800 + Math.round(Math.random() * 1000),
     percentageChange: -20 + Math.round(Math.random() * 10),
   },
   {
     timestamp: Date.now() - 365 * 24 * 60 * 60 * 1000,
-    totalHolders: 500 + Math.round(Math.random() * 100),
+    totalHolders: 500 + Math.round(Math.random() * 1000),
     percentageChange: -50 + Math.round(Math.random() * 10),
   },
 ];

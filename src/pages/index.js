@@ -158,7 +158,7 @@ const LandingPage = ({ BASE_URL }) => {
           </div>
         </div>
 
-        <Dashboard />
+        <Dashboard connected={connected}/>
         <div className="backdrop-blur-xl bg-dark-card/50 mt-20 p-12 rounded-2xl border border-gray-800 text-center">
           <h2 className="font-grotesk text-3xl font-bold mb-6 bg-gradient-to-r from-accent-primary from-20% to-accent-secondary to-90% bg-clip-text text-transparent">
             Ready to dive in?

@@ -36,7 +36,7 @@ const chartOptionsPie = {
   },
   elements: {
     arc: {
-      borderWidth: 0, // No border on slices
+      borderWidth: 1, // No border on slices
     },
   },
 };
@@ -93,7 +93,7 @@ const chartOptions = {
   },
 };
 
-const Dashboard = () => {
+const Dashboard = (connected) => {
   const [lineChartDataHolders, setLineChartDataHolders] = useState(null);
   const [lineChartDataPriceHistory, setLineChartDataPriceHistory] =
     useState(null);
@@ -103,6 +103,7 @@ const Dashboard = () => {
     useState(null);
   const [lineChartDataRatio, setLineChartDataRatio] = useState(null);
   const [holderDistribution, setHolderDistribution] = useState(null);
+  const [isEasy, setIsEasy] = useState(true);
 
   const timestamps = [
     Date.now(),
@@ -111,6 +112,10 @@ const Dashboard = () => {
     Date.now() - 30 * 24 * 60 * 60 * 1000, // 1 month ago
     Date.now() - 365 * 24 * 60 * 60 * 1000, // 1 year ago
   ];
+
+  const toggleMode = () => {
+    setIsEasy(!isEasy);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -183,7 +188,7 @@ const Dashboard = () => {
               data: holdersAnti.map((entry) => entry.totalHolders),
               borderColor: "#D13800",
               backgroundColor: "#D13800",
-              fill: false,
+              fill: false, // Ensure the area under the line is not filled
             },
             {
               label: "PRO",
@@ -230,6 +235,7 @@ const Dashboard = () => {
               label: "ANTI",
               data: lpBalancesAnti,
               backgroundColor: randomColors,
+              borderColor: Array.from({ length: randomCount }, () => "#000000"),
             },
           ],
           options: chartOptionsPie,
@@ -242,6 +248,7 @@ const Dashboard = () => {
               label: "PRO",
               data: lpBalancesPro,
               backgroundColor: randomColors,
+              borderColor: Array.from({ length: randomCount }, () => "#000000"),
             },
           ],
           options: chartOptionsPie,
@@ -256,6 +263,8 @@ const Dashboard = () => {
               label: "Ratio (ANTI:PRO)",
               data: priceRatios,
               backgroundColor: "#FF9500",
+              borderColor: "#FF9500",
+              fill: false,
             },
           ],
           options: chartOptions,
@@ -268,6 +277,7 @@ const Dashboard = () => {
               label: "Holder Distribution",
               data: randomHolderDistribution, // -- Mock --
               backgroundColor: ["#D13800", "#00CC8E"],
+              borderColor: ["#000000", "#000000"],
             },
           ],
           options: chartOptionsPie,
@@ -282,7 +292,37 @@ const Dashboard = () => {
 
   return (
     <section className="py-12 text-gray-100">
-      <h2 className="text-center text-2xl font-bold mb-6">Dashboard</h2>
+      <div className="flex justify-between items-center px-4 py-2">
+        <h2 className="text-center text-2xl font-bold mb-6">Dashboard</h2>
+        <div className="flex items-center space-x-4">
+          <span
+            className={`text-sm font-semibold ${
+              isEasy ? "text-green-500" : "text-gray-500"
+            }`}
+          >
+            Basic
+          </span>
+          <button
+            onClick={toggleMode}
+            className={`relative w-12 h-6 rounded-full ${
+              isEasy ? "bg-green-500" : "bg-orange-500"
+            } focus:outline-none`}
+          >
+            <div
+              className={`block w-4 h-4 bg-white rounded-full transform transition-transform ${
+                isEasy ? "translate-x-1" : "translate-x-7"
+              }`}
+            ></div>
+          </button>
+          <span
+            className={`text-sm font-semibold ${
+              !isEasy ? "text-orange-500" : "text-gray-500"
+            }`}
+          >
+            Advanced
+          </span>
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         <div className="p-4 rounded-lg">
           <h3 className="text-center font-semibold mb-4">Holder Trends</h3>
