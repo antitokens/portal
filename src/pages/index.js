@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from "react";
 import Head from "next/head";
-import Script from "next/script";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -8,10 +7,8 @@ import {
 } from "@solana/wallet-adapter-react";
 import {
   WalletModalProvider,
-  WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui";
 import {
-  PhantomWalletAdapter,
   SolflareWalletAdapter,
   TorusWalletAdapter,
   LedgerWalletAdapter,
@@ -20,28 +17,23 @@ import Navbar from "../components/TopNavbar";
 import Footer from "../components/BottomFooter";
 import Dashboard from "../components/Dashboard";
 import BuyTokenModal from "../components/BuyTokenModal";
-import { ANTI_TOKEN_MINT, PRO_TOKEN_MINT } from "../utils/solana";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
-const Home = ({BASE_URL}) => {
-  
+const Home = ({ BASE_URL }) => {
   return (
     <>
       <Head>
         <title>Antitoken | Portal</title>
         <meta
           name="description"
-          content="Experience the future of entangled token pair market making with $ANTI and $PRO tokens."
+          content="Your portal to $ANTI and $PRO portfolio, data and metrics."
         />
 
         {/* Open Graph Meta Tags */}
-        <meta
-          property="og:title"
-          content="Antitoken Portal"
-        />
+        <meta property="og:title" content="Antitoken Portal" />
         <meta
           property="og:description"
-          content="Experience the future of prediction markets with $ANTI and $PRO tokens."
+          content="Your portal to $ANTI and $PRO portfolio, data and metrics."
         />
         <meta
           property="og:image"
@@ -52,13 +44,10 @@ const Home = ({BASE_URL}) => {
 
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Antitoken - Quantum-inspired Token Pair"
-        />
+        <meta name="twitter:title" content="Antitoken Portal" />
         <meta
           name="twitter:description"
-          content="Experience the future of prediction markets with $ANTI and $PRO tokens."
+          content="Your portal to $ANTI and $PRO portfolio, data and metrics."
         />
         <meta
           name="twitter:image"
@@ -125,29 +114,9 @@ const Stars = () => {
   );
 };
 
-const LandingPage = ({BASE_URL}) => {
- 
+const LandingPage = ({ BASE_URL }) => {
   const { connected, publicKey } = useWallet();
   const [showBuyTokensModal, setShowBuyTokensModal] = useState(false);
-  const votersData = {
-    total: 7000,
-    proVoters: 2349,
-    antiVoters: 3290,
-  };
-
-  const tokensData = {
-    total: 999987675,
-    proTokens: 230989765,
-    antiTokens: 259087273,
-  };
-
-  const votesOverTime = {
-    timestamps: ["Dec 6", "Dec 7", "Dec 8", "Dec 9", "Dec 10"],
-    proVotes: [51210286, 10303372, 40281190, 7453850, 121741067],
-    antiVotes: [16543217, 66582982, 145961070, 27472813, 2527191],
-    tokenRangesPro: { "0-100k": 34, "100k-1M": 87, "1-10M": 47 },
-    tokenRangesAnti: { "0-100k": 19, "100k-1M": 59, "1-10M": 42 },
-  };
 
   return (
     <>
@@ -170,7 +139,7 @@ const LandingPage = ({BASE_URL}) => {
               Antitoken Portal
             </h1>
             <p className="font-open font-medium text-xl md:text-[1.85rem] text-gray-300 mb-6">
-              Your {" "}
+              Your{" "}
               <span className="text-accent-primary font-semibold">$ANTI</span>{" "}
               and{" "}
               <span className="text-accent-secondary font-semibold">$PRO</span>{" "}
@@ -188,12 +157,8 @@ const LandingPage = ({BASE_URL}) => {
             />
           </div>
         </div>
-        
-        <Dashboard
-          votersData={votersData}
-          tokensData={tokensData}
-          votesOverTime={votesOverTime}
-        />
+
+        <Dashboard />
         <div className="backdrop-blur-xl bg-dark-card/50 mt-20 p-12 rounded-2xl border border-gray-800 text-center">
           <h2 className="font-grotesk text-3xl font-bold mb-6 bg-gradient-to-r from-accent-primary from-20% to-accent-secondary to-90% bg-clip-text text-transparent">
             Ready to dive in?
@@ -201,12 +166,18 @@ const LandingPage = ({BASE_URL}) => {
           <p className="text-xl text-gray-300 mb-8">
             Join the future of prediction markets
           </p>
-          <button className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold" onClick={() => setShowBuyTokensModal(true)}>
+          <button
+            className="bg-accent-primary hover:opacity-90 text-gray-300 px-8 py-3 rounded-lg text-lg font-semibold"
+            onClick={() => setShowBuyTokensModal(true)}
+          >
             Buy Tokens
           </button>
         </div>
       </section>
-      <BuyTokenModal isVisible={showBuyTokensModal} setIsVisible={setShowBuyTokensModal} />
+      <BuyTokenModal
+        isVisible={showBuyTokensModal}
+        setIsVisible={setShowBuyTokensModal}
+      />
     </>
   );
 };
