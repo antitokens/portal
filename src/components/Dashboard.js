@@ -23,6 +23,7 @@ const chartOptionsPie = {
         },
         boxWidth: 20, // Adjust box width for better alignment
         padding: 10, // Add padding between legends
+        color: "#FFFFFFA2",
       },
     },
     tooltip: {
@@ -49,6 +50,7 @@ const chartOptions = {
         font: {
           family: "'SF Mono Round'",
         },
+        color: "#FFFFFFA2",
       },
     },
   },
@@ -184,14 +186,14 @@ const Dashboard = (connected) => {
           labels: timestamps.map((ts) => new Date(ts).toLocaleDateString()),
           datasets: [
             {
-              label: "ANTI",
+              label: "Anti",
               data: holdersAnti.map((entry) => entry.totalHolders),
               borderColor: "#D13800",
               backgroundColor: "#D13800",
               fill: false, // Ensure the area under the line is not filled
             },
             {
-              label: "PRO",
+              label: "Pro",
               data: holdersPro.map(
                 (entry) => entry.totalHolders - Math.round(Math.random() * 100) // -- Mock --
               ),
@@ -209,7 +211,7 @@ const Dashboard = (connected) => {
             .map((ts) => new Date(ts).toLocaleDateString()),
           datasets: [
             {
-              label: "ANTI",
+              label: "Anti",
               data: priceHistoryAnti.map(
                 (entry) => entry.price + Math.round(Math.random() * 10) // -- Mock --
               ),
@@ -218,7 +220,7 @@ const Dashboard = (connected) => {
               fill: false,
             },
             {
-              label: "PRO",
+              label: "Pro",
               data: priceHistoryPro.map((entry) => entry.price),
               borderColor: "#00CC8E",
               backgroundColor: "#00CC8E",
@@ -232,7 +234,7 @@ const Dashboard = (connected) => {
           labels: Array.from({ length: randomCount }, (_, i) => randomNames[i]), // -- Mock --
           datasets: [
             {
-              label: "ANTI",
+              label: "Anti",
               data: lpBalancesAnti,
               backgroundColor: randomColors,
               borderColor: Array.from({ length: randomCount }, () => "#000000"),
@@ -245,7 +247,7 @@ const Dashboard = (connected) => {
           labels: Array.from({ length: randomCount }, (_, i) => randomNames[i]), // -- Mock --
           datasets: [
             {
-              label: "PRO",
+              label: "Pro",
               data: lpBalancesPro,
               backgroundColor: randomColors,
               borderColor: Array.from({ length: randomCount }, () => "#000000"),
@@ -260,7 +262,7 @@ const Dashboard = (connected) => {
             .map((ts) => new Date(ts).toLocaleDateString()),
           datasets: [
             {
-              label: "Ratio (ANTI:PRO)",
+              label: "Ratio (Anti:Pro)",
               data: priceRatios,
               backgroundColor: "#FF9500",
               borderColor: "#FF9500",
@@ -271,7 +273,7 @@ const Dashboard = (connected) => {
         });
 
         setHolderDistribution({
-          labels: ["ANTI", "PRO"],
+          labels: ["Anti", "Pro"],
           datasets: [
             {
               label: "Holder Distribution",
@@ -325,7 +327,34 @@ const Dashboard = (connected) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto">
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">Holder Trends</h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-center font-semibold mb-4">Holder Trends</h3>
+            <button
+              className="text-gray-300 hover:text-white"
+              onClick={() =>
+                alert("This chart shows the trends of token holders over time.")
+              }
+              title="This chart shows the trends of token holders over time."
+            >
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#ffffff66"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </div>
           {lineChartDataHolders && (
             <Line
               data={lineChartDataHolders}
@@ -334,7 +363,34 @@ const Dashboard = (connected) => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">Price Trends</h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-center font-semibold mb-4">Price Trends</h3>
+            <button
+              className="text-gray-300 hover:text-white"
+              onClick={() =>
+                alert("This chart shows the trends of token prices over time.")
+              }
+              title="This chart shows the trends of token prices over time."
+            >
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#ffffff66"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </div>
           {lineChartDataPriceHistory && (
             <Line
               data={lineChartDataPriceHistory}
@@ -343,7 +399,34 @@ const Dashboard = (connected) => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">Price Ratio</h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-center font-semibold mb-4">Price Ratio</h3>
+            <button
+              className="text-gray-300 hover:text-white"
+              onClick={() =>
+                alert("This chart shows the ratio of token prices over time.")
+              }
+              title="This chart shows the ratio of token prices over time."
+            >
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#ffffff66"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </div>
           {lineChartDataRatio && (
             <Line
               data={lineChartDataRatio}
@@ -352,9 +435,36 @@ const Dashboard = (connected) => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">
-            <span className="text-accent-secondary">$PRO</span> LP Balances
-          </h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-center font-semibold mb-4">
+              <span className="text-accent-secondary">$PRO</span> LP Balances
+            </h3>
+            <button
+              className="text-gray-300 hover:text-white"
+              onClick={() =>
+                alert("This chart shows the LP balances for $PRO.")
+              }
+              title="This chart shows the LP balances for $PRO."
+            >
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#ffffff66"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </div>
           {pieChartDataLPBalancesPro && (
             <Pie
               data={pieChartDataLPBalancesPro}
@@ -363,9 +473,36 @@ const Dashboard = (connected) => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">
-            <span className="text-accent-orange">$ANTI</span> LP Balances
-          </h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-center font-semibold mb-4">
+              <span className="text-accent-orange">$ANTI</span> LP Balances
+            </h3>
+            <button
+              className="text-gray-300 hover:text-white"
+              onClick={() =>
+                alert("This chart shows the LP balances for $ANTI.")
+              }
+              title="This chart shows the LP balances for $ANTI."
+            >
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#ffffff66"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </div>
           {pieChartDataLPBalancesAnti && (
             <Pie
               data={pieChartDataLPBalancesAnti}
@@ -374,9 +511,36 @@ const Dashboard = (connected) => {
           )}
         </div>
         <div className="p-4 rounded-lg">
-          <h3 className="text-center font-semibold mb-4">
-            Holder Distribution
-          </h3>
+          <div className="flex justify-between items-center">
+            <h3 className="text-center font-semibold mb-4">
+              Holder Distribution
+            </h3>
+            <button
+              className="text-gray-300 hover:text-white"
+              onClick={() =>
+                alert("This chart shows the distribution of holders.")
+              }
+              title="This chart shows the distribution of holders."
+            >
+              <svg
+                class="w-6 h-6 text-gray-800 dark:text-white"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="#ffffff66"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </button>
+          </div>
           {holderDistribution && (
             <Pie
               data={holderDistribution}
