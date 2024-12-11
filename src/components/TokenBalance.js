@@ -31,7 +31,7 @@ const TokenBalance = () => {
     <div className="relative mt-2 mb-2">
       <button
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className={`flex justify-center w-full bg-accent-primary text-white px-4 py-2 rounded-lg text-md hover:bg-gray-500 ${
+        className={`flex justify-center w-full bg-transparent border-solid border-2 border-accent-primary text-accent-primary px-4 py-[10px] rounded-md text-md hover:border-white hover:text-white ${
           dropdownOpen ? "bg-gray-500" : ""
         }`}
       >
